@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  # Webserver
+  webserver:
+    build: ./dockerfile
+    container_name: "sismadak"
+    restart: 'always'
+    ports:
+      - "${HOST_PORT}:80"
+ 
+    volumes: 
+      - ${DOCUMENT_ROOT}:/var/www/html
+
+ # Database Server
+  mysql:
+    image: "mariadb:10.3"
+    container_name: "database"
+    restart: 'always'
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ${MYSQL_DATA_DIR}:/var/lib/mysql
+      - ${MYSQL_LOG_DIR}:/var/log/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD:0
+      - MARIADB_RANDOM_ROOT_PASSWORD:0
+
+

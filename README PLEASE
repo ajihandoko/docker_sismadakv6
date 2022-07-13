@@ -1,0 +1,40 @@
+Silahkan bagi kawan-kawan yang mau menggunakan, menyebarluaskan sismadak versi docker ini kami dengan sangat senang berbagi. 
+
+=============================================================================================================================================
+Requirement : 
+1. Koneksi Internet
+2. Installed docker / docker desktop (Windows OS)
+3. Installed docker-compose 
+
+=============================================================================================================================================
+How to do : 
+
+**Linux Family**
+1. Download file docker_sismadak.tar.gz 
+2. Extract file docker_sismadak.tar.gz 
+3. Masuk ke directory docker_sismadak 
+4. Jalankan command "docker-compose up -d"
+
+**Windows**
+1. Download file docker_sismadak.zip
+2. Extract file docker_sismadak.zip
+3. Buka CMD atau Powershell 
+4. Masuk ke folder docker_sismadak (hasil extract docker_sismadak.zip)
+5. Jalankan command "docker-compose up -d"
+
+==============================================================================================================================================
+Setelah proses diatas berhasil silahkan buka browser dan akses menggunakan alamat http://ip_komputer/install.php
+alam tahap ini berikut hal yang perlu diperhatikan : 
+1. Create Database 
+    > Masuk ke console Container mysql
+	  Ketik command : docker exec -it database /bin/bash
+	> Masuk ke console MySQL
+	  Ketik command : mysql -u root -p 
+	> Create Database simpedak_db
+	  Ketik command : create database simpedak_db;
+2. Konfigurasi Database 
+    > Tipe Database 	: MySQLi
+	> user Database 	: root
+	> Nama Database 	: simpedak_db
+	> Server Database 	: database
+	> Password Database : mypass

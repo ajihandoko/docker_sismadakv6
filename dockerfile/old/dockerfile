@@ -1,0 +1,31 @@
+FROM debian:10
+
+RUN apt update
+RUN apt -y install apt-transport-https gnupg wget
+RUN wget -q https://packages.sury.org/php/apt.gpg -O- | apt-key add -
+
+COPY php.list /etc/apt/sources.list.d
+
+RUN mkdir /usr/local/ioncube
+COPY ioncube_loader_lin_5.6.so /usr/local/ioncube
+COPY ioncube_loader_lin_5.6_ts.so /usr/local/ioncube
+
+RUN apt update
+
+RUN apt -y install apache2 \
+php5.6 \
+php5.6-cli \
+php5.6-common \
+php5.6-curl \
+php5.6-gd \
+php5.6-json \
+php5.6-mysql \
+php5.6-readline \
+apache2 \
+&& apt-get clean
+
+COPY 00-iocube.ini /etc/php/5.6/apache2/conf.d
+
+EXPOSE 80
+
+CMD ["apache2ctl", "-D",  "FOREGROUND"]
